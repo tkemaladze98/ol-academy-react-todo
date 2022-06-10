@@ -6,7 +6,11 @@ import ToDo from './components/ToDo';
 class App extends Component {
   render() {
     return (
-      <ToDo />
+      <div className='App'>
+        <h1 style={{textAlign:"center",margin:"50px 0px 0px 0px"}}>ToDo List</h1>
+        <ToDo />
+      </div>
+
     );
   }
 }

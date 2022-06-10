@@ -10,10 +10,11 @@ class AddNewTask extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="add-div">
         <div className="input">
           <label htmlFor="task">Enter task</label>
           <input
+            id="task"
             type="text"
             name="task"
             placeholder="Enter here"
@@ -23,6 +24,7 @@ class AddNewTask extends React.Component {
         </div>
         <button
           className="add"
+          style={{ backgroundColor: "lightgray" }}
           onClick={() => {
             this.props.addNewTask(this.state.newTask);
             this.setState({ newTask: "" });
