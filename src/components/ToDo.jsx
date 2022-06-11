@@ -2,7 +2,7 @@ import React from "react";
 import AddNewTask from "./AddNewTask";
 import TaskList from "./TaskList";
 import DeleteButtons from "./DeleteButtons";
-import "./toDo.css"
+import "./toDo.css";
 
 class ToDo extends React.Component {
   constructor(props) {
@@ -148,14 +148,10 @@ class ToDo extends React.Component {
           errorMessage={this.state.errorMessage}
         />
         {this.state.todos.length === 0 && (
-          <h1
-          className="empty-list"
-          >
-            List Is Empty
-          </h1>
+          <h1 className="empty-list">List Is Empty</h1>
         )}
         {this.state.todos.length !== 0 && (
-          <ul>
+          <ul className="task-list-ul">
             {this.state.todos.map((todo) => (
               <div>
                 <TaskList
@@ -180,13 +176,13 @@ class ToDo extends React.Component {
                       />
                       <div>
                         <button
-                        className="apply-edit"
+                          className="apply-edit"
                           onClick={this.endEditing}
                         >
                           Apply Edit
                         </button>
                         <button
-                        className="cancel-edit"
+                          className="cancel-edit"
                           onClick={() =>
                             this.setState({ editingText: "", editingId: "" })
                           }

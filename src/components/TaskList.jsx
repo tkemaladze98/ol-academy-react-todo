@@ -11,27 +11,29 @@ class TaskList extends React.Component {
 
   render() {
     return (
-      <li key={this.props.id}>
-        <input
-          type="checkbox"
-          onClick={(event) =>
-            this.props.isCheckboxed(event.target.checked, this.props.tittle)
-          }
-        />
-        <small>
-          <span onClick={() => this.props.taskSwitch(this.props.id, "up")}>
-            <AiOutlineUp />
-          </span>
-          <span onClick={() => this.props.taskSwitch(this.props.id, "down")}>
-            <AiOutlineDown />
-          </span>
-        </small>
-        {this.props.isDone === false ? (
-          <span>{this.props.tittle}</span>
-        ) : (
-          <span className="finished-task">{this.props.tittle}</span>
-        )}
-        <div>
+      <li className="list-element" key={this.props.id}>
+        <div className="list-item">
+          <input
+            type="checkbox"
+            onClick={(event) =>
+              this.props.isCheckboxed(event.target.checked, this.props.tittle)
+            }
+          />
+          <small>
+            <span onClick={() => this.props.taskSwitch(this.props.id, "up")}>
+              <AiOutlineUp />
+            </span>
+            <span onClick={() => this.props.taskSwitch(this.props.id, "down")}>
+              <AiOutlineDown />
+            </span>
+          </small>
+          {this.props.isDone === false ? (
+            <span className="unfinished-task">{this.props.tittle}</span>
+          ) : (
+            <span className="finished-task">{this.props.tittle}</span>
+          )}
+        </div>
+        <div className="list-buttons">
           <button
             className="delete-btn"
             onClick={() => this.props.deleteTask(this.props.id)}
