@@ -1,4 +1,5 @@
 import React from "react";
+import "./addNewTask.css"
 
 class AddNewTask extends React.Component {
   constructor(props) {
@@ -8,32 +9,40 @@ class AddNewTask extends React.Component {
     };
   }
 
+  clearNewTask = () =>{
+    this.setState({newTask:""})
+  }
+
   render() {
     return (
-      <div className="add-div">
-        <div className="input">
-          <label htmlFor="task">Enter task</label>
-          <input
-            id="task"
-            type="text"
-            name="task"
-            placeholder="Enter here"
-            onChange={(event) => this.setState({ newTask: event.target.value })}
-            value={this.state.newTask}
-          />
+      <div>
+        <div className="add-div">
+          <div className="input">
+            <label htmlFor="task">Enter task</label>
+            <input
+              id="task"
+              type="text"
+              name="task"
+              placeholder="Enter here"
+              onChange={(event) =>
+                this.setState({ newTask: event.target.value })
+              }
+              value={this.state.newTask}
+            />
+          </div>
+          <button
+            className="add"
+            onClick={() => {
+              this.props.addNewTask(this.state.newTask,this.clearNewTask);
+            }}
+          >
+            Add
+          </button>
         </div>
-        <button
-          className="add"
-          style={{ backgroundColor: "lightgray" }}
-          onClick={() => {
-            this.props.addNewTask(this.state.newTask);
-            this.setState({ newTask: "" });
-          }}
-        >
-          Add
-        </button>
         {this.props.errorMessage !== "" && (
-          <p style={{ color: "red" }}>{this.props.errorMessage}</p>
+          <article>
+            <p>{this.props.errorMessage}</p>
+          </article>
         )}
       </div>
     );

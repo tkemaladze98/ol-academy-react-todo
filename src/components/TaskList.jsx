@@ -1,4 +1,7 @@
 import React from "react";
+import { AiOutlineUp } from "react-icons/ai";
+import { AiOutlineDown } from "react-icons/ai";
+import "./taskList.css";
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -12,55 +15,52 @@ class TaskList extends React.Component {
         <input
           type="checkbox"
           onClick={(event) =>
-            this.props.isCheckboxed(this.props.tittle)
+            this.props.isCheckboxed(event.target.checked, this.props.tittle)
           }
         />
         <small>
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => this.props.taskGoUp(this.props.id)}
-          >
-            up
+          <span onClick={() => this.props.taskSwitch(this.props.id, "up")}>
+            <AiOutlineUp />
           </span>
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => this.props.taskGoDown(this.props.id)}
-          >
-            down
+          <span onClick={() => this.props.taskSwitch(this.props.id, "down")}>
+            <AiOutlineDown />
           </span>
         </small>
-        {this.props.isDone == "false" ? (
+        {this.props.isDone === false ? (
           <span>{this.props.tittle}</span>
         ) : (
-          <span style={{ color: "red" }}>{this.props.tittle}</span>
+          <span className="finished-task">{this.props.tittle}</span>
         )}
         <div>
           <button
-            style={{
-              backgroundColor: "red",
-            }}
+            className="delete-btn"
             onClick={() => this.props.deleteTask(this.props.id)}
           >
             Delete
           </button>
           <button
-            style={{
-              backgroundColor: "yellow",
-            }}
+            className="edit-btn"
             onClick={() =>
               this.props.startEditing(this.props.tittle, this.props.id)
             }
           >
             Edit
           </button>
-          <button
-            style={{
-              backgroundColor: "green",
-            }}
-            onClick={() => this.props.taskIsDone(this.props.tittle)}
-          >
-            Task isDone
-          </button>
+          {this.props.isDone === false ? (
+            <button
+              className="isnotdone-btn"
+              onClick={() => this.props.taskIsDone(this.props.tittle)}
+            >
+              Isn't Done
+            </button>
+          ) : (
+            <button
+              className="isdone-btn"
+              onClick={() => this.props.taskIsDone(this.props.tittle)}
+            >
+              Done
+            </button>
+          )}
         </div>
       </li>
     );

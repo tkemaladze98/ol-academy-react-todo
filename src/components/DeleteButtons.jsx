@@ -1,4 +1,5 @@
 import React from "react";
+import "./deleteButtons.css";
 
 class DeleteButtons extends React.Component {
   constructor(props) {
@@ -9,34 +10,13 @@ class DeleteButtons extends React.Component {
   render() {
     return (
       <div className="button-div">
-        <button
-          style={{
-            backgroundColor: "red",
-            border: "none",
-            cursor: "pointer",
-          }}
-          onClick={() => this.props.deleteAllTask()}
-        >
+        <button onClick={() => this.props.deleteAllTask()}>
           Delete All Task
         </button>
-        <button
-          style={{
-            backgroundColor: "red",
-            border: "none",
-            cursor: "pointer",
-          }}
-          onClick={() => this.props.deleteAllFinishedTask()}
-        >
+        <button onClick={() => this.props.deleteAllFinishedTask()}>
           Delete All Finished Task
         </button>
-        <button
-          style={{
-            backgroundColor: "red",
-            border: "none",
-            cursor: "pointer",
-          }}
-          onClick={() => this.props.deleteCheckboxedTask()}
-        >
+        <button onClick={() => this.props.deleteCheckboxedTask()}>
           Delete All Chekcboxed Task
         </button>
       </div>

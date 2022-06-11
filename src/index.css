@@ -2,4 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjUzMGJhdGNoMi1udW5vb24tMTYtcGxhbm5lcnNfMS5qcGc.jpg");
+  background-size: cover;
+  word-wrap: break-word;
 }

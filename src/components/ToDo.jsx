@@ -2,6 +2,7 @@ import React from "react";
 import AddNewTask from "./AddNewTask";
 import TaskList from "./TaskList";
 import DeleteButtons from "./DeleteButtons";
+import "./toDo.css"
 
 class ToDo extends React.Component {
   constructor(props) {
@@ -10,45 +11,27 @@ class ToDo extends React.Component {
       editingText: "",
       editingId: "",
       errorMessage: "",
-      todos: [
-        {
-          id: 1,
-          tittle: "I have to finish my homework",
-          isDone: "false",
-          isCheckboxed: "off",
-        },
-        {
-          id: 2,
-          tittle: "I have to go with friends at 9:00 am",
-          isDone: "false",
-          isCheckboxed: "off",
-        },
-      ],
+      todos: [],
     };
   }
 
-  isCheckboxed = (text) => {
+  isCheckboxed = (value, text) => {
     let newTodos = [];
     this.state.todos.forEach((todo) => {
-      if (todo.tittle == text) {
-        if (todo.isCheckboxed == "off") {
-          todo.isCheckboxed = "on";
-        } else {
-          todo.isCheckboxed = "off";
-        }
+      if (todo.tittle === text) {
+        todo.isCheckboxed = value;
       }
       newTodos.push(todo);
     });
     this.setState({
       todos: newTodos,
     });
-    console.log(this.state.todos);
   };
   taskIsDone = (text) => {
     let newTodos = [];
     this.state.todos.forEach((todo) => {
-      if (todo.tittle == text) {
-        todo.isDone = "true";
+      if (todo.tittle === text) {
+        todo.isDone = !todo.isDone;
       }
       newTodos.push(todo);
     });
@@ -63,7 +46,7 @@ class ToDo extends React.Component {
   endEditing = () => {
     let newTodos = [];
     this.state.todos.forEach((todo) => {
-      if (todo.id == this.state.editingId) {
+      if (todo.id === this.state.editingId) {
         todo.tittle = this.state.editingText;
       }
       newTodos.push(todo);
@@ -75,27 +58,21 @@ class ToDo extends React.Component {
     });
   };
 
-  taskGoUp = (id) => {
+  taskSwitch = (id, direction) => {
+    let checkIndex = false;
     let newTodos = this.state.todos;
-    for (let index in newTodos) {
-      if (newTodos[index].id == id && index != 0) {
-        let tmpTodo = newTodos[index];
-        newTodos[index] = newTodos[index - 1];
-        newTodos[index - 1] = tmpTodo;
-        break;
+    for (let index = 0; index < newTodos.length; index++) {
+      if (direction === "up") {
+        checkIndex = index !== 0 ? true : false;
       }
-    }
-    this.setState({
-      todos: newTodos,
-    });
-  };
-  taskGoDown = (id) => {
-    let newTodos = this.state.todos;
-    for (let i = 0; i < newTodos.length; i++) {
-      if (newTodos[i].id == id && i != newTodos.length - 1) {
-        let tmpTodo = newTodos[i];
-        newTodos[i] = newTodos[i + 1];
-        newTodos[i + 1] = tmpTodo;
+      if (direction === "down") {
+        checkIndex = index !== newTodos.length - 1 ? true : false;
+      }
+      if (newTodos[index].id === id && checkIndex) {
+        let swapIndex = direction === "up" ? index - 1 : index + 1;
+        let tmpTodo = newTodos[index];
+        newTodos[index] = newTodos[swapIndex];
+        newTodos[swapIndex] = tmpTodo;
         break;
       }
     }
@@ -104,7 +81,7 @@ class ToDo extends React.Component {
     });
   };
 
-  addNewTask = (tittle) => {
+  addNewTask = (tittle, clear) => {
     if (tittle.length === 0) {
       return;
     }
@@ -118,21 +95,22 @@ class ToDo extends React.Component {
       newToDo = {
         id: 1,
         tittle: tittle,
-        isDone: "false",
-        isCheckboxed: "off",
+        isDone: false,
+        isCheckboxed: false,
       };
     } else {
       newToDo = {
         id: this.state.todos[this.state.todos.length - 1].id + 1,
         tittle: tittle,
-        isDone: "false",
-        isCheckboxed: "off",
+        isDone: false,
+        isCheckboxed: false,
       };
     }
     this.setState({
       todos: [...this.state.todos, newToDo],
       errorMessage: "",
     });
+    clear();
   };
 
   deleteTask = (id) => {
@@ -147,7 +125,7 @@ class ToDo extends React.Component {
   };
 
   deleteAllFinishedTask = () => {
-    const newTodos = this.state.todos.filter((todo) => todo.isDone != "true");
+    const newTodos = this.state.todos.filter((todo) => todo.isDone !== true);
     this.setState({
       todos: newTodos,
     });
@@ -155,7 +133,7 @@ class ToDo extends React.Component {
 
   deleteCheckboxedTask = () => {
     const newTodos = this.state.todos.filter(
-      (todo) => todo.isCheckboxed != "on"
+      (todo) => todo.isCheckboxed !== true
     );
     this.setState({
       todos: newTodos,
@@ -169,52 +147,65 @@ class ToDo extends React.Component {
           addNewTask={this.addNewTask}
           errorMessage={this.state.errorMessage}
         />
-        <ul>
-          {this.state.todos.map((todo) => (
-            <TaskList
-              id={todo.id}
-              tittle={todo.tittle}
-              deleteTask={this.deleteTask}
-              startEditing={this.startEditing}
-              isDone={todo.isDone}
-              taskIsDone={this.taskIsDone}
-              isCheckboxed={this.isCheckboxed}
-              taskGoUp={this.taskGoUp}
-              taskGoDown={this.taskGoDown}
-            />
-          ))}
-        </ul>
-        <DeleteButtons
-          deleteAllFinishedTask={this.deleteAllFinishedTask}
-          deleteAllTask={this.deleteAllTask}
-          deleteCheckboxedTask={this.deleteCheckboxedTask}
-        />
-        {this.state.editingText !== "" && (
-          <div className="edit-div">
-            <input
-              type="text"
-              onChange={(event) =>
-                this.setState({ editingText: event.target.value })
-              }
-              value={this.state.editingText}
-            />
-            <div>
-              <button
-                style={{ backgroundColor: "green" }}
-                onClick={this.endEditing}
-              >
-                Apply Edit
-              </button>
-              <button
-                style={{ backgroundColor: "red" }}
-                onClick={() =>
-                  this.setState({ editingText: "", editingId: "" })
-                }
-              >
-                Cancel Edit
-              </button>
-            </div>
-          </div>
+        {this.state.todos.length === 0 && (
+          <h1
+          className="empty-list"
+          >
+            List Is Empty
+          </h1>
+        )}
+        {this.state.todos.length !== 0 && (
+          <ul>
+            {this.state.todos.map((todo) => (
+              <div>
+                <TaskList
+                  id={todo.id}
+                  tittle={todo.tittle}
+                  deleteTask={this.deleteTask}
+                  startEditing={this.startEditing}
+                  isDone={todo.isDone}
+                  taskIsDone={this.taskIsDone}
+                  isCheckboxed={this.isCheckboxed}
+                  taskSwitch={this.taskSwitch}
+                />
+                {this.state.editingText !== "" &&
+                  this.state.editingId === todo.id && (
+                    <div className="edit-div">
+                      <input
+                        type="text"
+                        onChange={(event) =>
+                          this.setState({ editingText: event.target.value })
+                        }
+                        value={this.state.editingText}
+                      />
+                      <div>
+                        <button
+                        className="apply-edit"
+                          onClick={this.endEditing}
+                        >
+                          Apply Edit
+                        </button>
+                        <button
+                        className="cancel-edit"
+                          onClick={() =>
+                            this.setState({ editingText: "", editingId: "" })
+                          }
+                        >
+                          Cancel Edit
+                        </button>
+                      </div>
+                    </div>
+                  )}
+              </div>
+            ))}
+          </ul>
+        )}
+        {this.state.todos.length !== 0 && (
+          <DeleteButtons
+            deleteAllFinishedTask={this.deleteAllFinishedTask}
+            deleteAllTask={this.deleteAllTask}
+            deleteCheckboxedTask={this.deleteCheckboxedTask}
+          />
         )}
       </div>
     );
