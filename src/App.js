@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import './components/responsive.css';
-import ToDo from './components/ToDo';
+import './components/styles/responsive.css';
+// import ToDo from './components/TodosUsingClasses/ToDo';
+import ToDo from './components/TodosUsingHooks/ToDo';
 
 class App extends Component {
   render() {
