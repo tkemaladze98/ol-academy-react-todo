@@ -2,11 +2,7 @@ import React from "react";
 import AddNewTask from "./AddNewTask";
 import TaskList from "./TaskList";
 import DeleteButtons from "./DeleteButtons";
-<<<<<<< Updated upstream
-import "./toDo.css";
-=======
 import "./toDo.scss";
->>>>>>> Stashed changes
 
 class ToDo extends React.Component {
   constructor(props) {

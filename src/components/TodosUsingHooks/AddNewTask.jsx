@@ -1,9 +1,5 @@
 import React, { useState} from "react";
-<<<<<<< Updated upstream
-import "../styles/addNewTask.css";
-=======
 import "../styles/addNewTask.scss";
->>>>>>> Stashed changes
 
 function AddNewTask(props) {
   const [newTask, setNewTaks] = useState("");

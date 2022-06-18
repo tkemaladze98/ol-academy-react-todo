@@ -1,9 +1,5 @@
 import React from "react";
-<<<<<<< Updated upstream
-import "../styles/deleteButtons.css";
-=======
 import "../styles/deleteButtons.scss";
->>>>>>> Stashed changes
 
 function DeleteButtons(props) {
   return (

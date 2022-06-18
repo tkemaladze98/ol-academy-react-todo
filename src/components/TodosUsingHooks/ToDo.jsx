@@ -2,11 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import AddNewTask from "./AddNewTask";
 import TaskList from "./TaskList";
 import DeleteButtons from "./DeleteButtons";
-<<<<<<< Updated upstream
-import "../styles/toDo.css";
-=======
 import "../styles/toDo.scss";
->>>>>>> Stashed changes
 
 function ToDo() {
   const [toDos, setTodos] = useState([]);
