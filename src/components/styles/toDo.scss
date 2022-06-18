@@ -1,0 +1,53 @@
+.main-div {
+  width: 70%;
+  margin: 100px auto;
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  article p {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+  }
+}
+ul {
+  border: 1px dashed black;
+  padding: 20px 40px;
+}
+.edit-div {
+  input {
+    width: 100%;
+    min-height: 30px;
+    margin: 20px 0px;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  div button {
+    width: 40%;
+    min-height: 40px;
+  }
+}
+.empty-list {
+  color: orange;
+  text-align: center;
+  font-size: 25px;
+}
+
+.apply-edit {
+  background-color: #59bf59;
+}
+
+.cancel-edit {
+  background-color: #7a7989;
+}
+
+button {
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+}

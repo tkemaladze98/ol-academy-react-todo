@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+<<<<<<< Updated upstream
 import './App.css';
 import './components/styles/responsive.css';
+=======
+import './components/styles/responsive.scss';
+>>>>>>> Stashed changes
 // import ToDo from './components/TodosUsingClasses/ToDo';
 import ToDo from './components/TodosUsingHooks/ToDo';
 

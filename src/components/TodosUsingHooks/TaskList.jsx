@@ -1,7 +1,11 @@
 import React from "react";
 import { AiOutlineUp } from "react-icons/ai";
 import { AiOutlineDown } from "react-icons/ai";
+<<<<<<< Updated upstream
 import "../styles/taskList.css";
+=======
+import "../styles/taskList.scss";
+>>>>>>> Stashed changes
 
 function TaskList(props) {
   return (

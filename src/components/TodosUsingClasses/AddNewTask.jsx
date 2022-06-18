@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< Updated upstream
 import "./addNewTask.css"
+=======
+import "./addNewTask.scss"
+>>>>>>> Stashed changes
 
 class AddNewTask extends React.Component {
   constructor(props) {

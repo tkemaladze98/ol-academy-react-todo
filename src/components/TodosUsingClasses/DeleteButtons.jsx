@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< Updated upstream
 import "./deleteButtons.css";
+=======
+import "./deleteButtons.scss";
+>>>>>>> Stashed changes
 
 class DeleteButtons extends React.Component {
   constructor(props) {

@@ -1,0 +1,53 @@
+.list-element {
+  list-style: lower-alpha;
+  display: flex;
+  margin: 15px 0px;
+  align-items: center;
+  small {
+    width: 5%;
+    min-width: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      text-align: center;
+      color: black;
+      cursor: pointer;
+    }
+    span:first-child {
+      background-color: rgb(49, 122, 49);
+    }
+    span:last-child {
+      background-color: rgb(185, 60, 60);
+    }
+  }
+  .list-item {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    span {
+      width: 90%;
+    }
+  }
+  .list-buttons {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 30%;
+    }
+  }
+  .delete-btn {
+    background-color: red;
+  }
+  .edit-btn {
+    background-color: yellow;
+  }
+  .isnotdone-btn {
+    background-color: orange;
+  }
+
+  .isdone-btn {
+    background-color: green;
+  }
+}

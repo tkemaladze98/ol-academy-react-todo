@@ -1,7 +1,11 @@
 import React from "react";
 import { AiOutlineUp } from "react-icons/ai";
 import { AiOutlineDown } from "react-icons/ai";
+<<<<<<< Updated upstream
 import "./taskList.css";
+=======
+import "./taskList.scss";
+>>>>>>> Stashed changes
 
 class TaskList extends React.Component {
   constructor(props) {
