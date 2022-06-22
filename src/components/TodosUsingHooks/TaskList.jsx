@@ -5,7 +5,7 @@ import "../styles/taskList.scss";
 
 function TaskList(props) {
   return (
-    <li className="list-element" key={`li-${props.id}`}>
+    <li className="list-element">
       <div className="list-item">
         <input
           type="checkbox"

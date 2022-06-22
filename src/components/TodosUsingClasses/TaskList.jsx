@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineUp } from "react-icons/ai";
 import { AiOutlineDown } from "react-icons/ai";
-import "./taskList.scss";
+import "../styles/taskList.scss";
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class TaskList extends React.Component {
 
   render() {
     return (
-      <li className="list-element" key={this.props.id}>
+      <li className="list-element">
         <div className="list-item">
           <input
             type="checkbox"

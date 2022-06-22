@@ -54,12 +54,15 @@ function ToDo() {
     let newToDos = toDos;
     newToDos.forEach((todo, index) => {
       let swapIndex = direction === "up" ? index - 1 : index + 1;
-      if (todo.id === id) {
-        if (direction === "up" && index !== 0) {
-          swapFunction(newToDos, swapIndex, index);
-        } else if (direction === "down" && index !== newToDos.length - 1) {
-          swapFunction(newToDos, swapIndex, index);
-        }
+      if (todo.id === id && direction === "up" && index !== 0) {
+        swapFunction(newToDos, swapIndex, index);
+      }
+      if (
+        todo.id === id &&
+        direction === "down" &&
+        index !== newToDos.length - 1
+      ) {
+        swapFunction(newToDos, swapIndex, index);
       }
     });
     setTodos(newToDos);
@@ -117,12 +120,14 @@ function ToDo() {
   return (
     <div className="main-div">
       <AddNewTask addNewTask={addNewTask} errorMessage={errorMessage} />
-      {toDos.length === 0 && <h1 className="empty-list">List Is Empty</h1>}
-      {toDos.length !== 0 && (
+      {toDos.length === 0 ? (
+        <h1 className="empty-list">List Is Empty</h1>
+      ) : (
         <ul className="task-list-ul">
           {toDos.map((todo) => (
             <div>
               <TaskList
+                key={todo.id}
                 id={todo.id}
                 tittle={todo.tittle}
                 deleteTask={deleteTask}

@@ -1,5 +1,5 @@
 import React from "react";
-import "./addNewTask.scss"
+import "../styles/addNewTask.scss";
 
 class AddNewTask extends React.Component {
   constructor(props) {
@@ -9,9 +9,9 @@ class AddNewTask extends React.Component {
     };
   }
 
-  clearNewTask = () =>{
-    this.setState({newTask:""})
-  }
+  clearNewTask = () => {
+    this.setState({ newTask: "" });
+  };
 
   render() {
     return (
@@ -33,7 +33,7 @@ class AddNewTask extends React.Component {
           <button
             className="add"
             onClick={() => {
-              this.props.addNewTask(this.state.newTask,this.clearNewTask);
+              this.props.addNewTask(this.state.newTask, this.clearNewTask);
             }}
           >
             Add

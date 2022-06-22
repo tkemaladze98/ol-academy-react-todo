@@ -1,5 +1,5 @@
 import React from "react";
-import "./deleteButtons.scss";
+import "../styles/deleteButtons.scss";
 
 class DeleteButtons extends React.Component {
   constructor(props) {

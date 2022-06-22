@@ -2,7 +2,7 @@ import React from "react";
 import AddNewTask from "./AddNewTask";
 import TaskList from "./TaskList";
 import DeleteButtons from "./DeleteButtons";
-import "./toDo.scss";
+import "../styles/toDo.scss";
 
 class ToDo extends React.Component {
   constructor(props) {
@@ -57,25 +57,27 @@ class ToDo extends React.Component {
       editingText: "",
     });
   };
+  swapFunction = (array, swapIndex, index) => {
+    let tmpTodo = array[index];
+    array[index] = array[swapIndex];
+    array[swapIndex] = tmpTodo;
+  };
 
   taskSwitch = (id, direction) => {
-    let checkIndex = false;
     let newTodos = this.state.todos;
-    for (let index = 0; index < newTodos.length; index++) {
-      if (direction === "up") {
-        checkIndex = index !== 0 ? true : false;
+    newTodos.forEach((todo, index) => {
+      let swapIndex = direction === "up" ? index - 1 : index + 1;
+      if (todo.id === id && direction === "up" && index !== 0) {
+        this.swapFunction(newTodos, swapIndex, index);
       }
-      if (direction === "down") {
-        checkIndex = index !== newTodos.length - 1 ? true : false;
+      if (
+        todo.id === id &&
+        direction === "down" &&
+        index !== newTodos.length - 1
+      ) {
+        this.swapFunction(newTodos, swapIndex, index);
       }
-      if (newTodos[index].id === id && checkIndex) {
-        let swapIndex = direction === "up" ? index - 1 : index + 1;
-        let tmpTodo = newTodos[index];
-        newTodos[index] = newTodos[swapIndex];
-        newTodos[swapIndex] = tmpTodo;
-        break;
-      }
-    }
+    });
     this.setState({
       todos: newTodos,
     });
@@ -147,14 +149,14 @@ class ToDo extends React.Component {
           addNewTask={this.addNewTask}
           errorMessage={this.state.errorMessage}
         />
-        {this.state.todos.length === 0 && (
+        {this.state.todos.length === 0 ? (
           <h1 className="empty-list">List Is Empty</h1>
-        )}
-        {this.state.todos.length !== 0 && (
+        ) : (
           <ul className="task-list-ul">
             {this.state.todos.map((todo) => (
               <div>
                 <TaskList
+                  key={todo.id}
                   id={todo.id}
                   tittle={todo.tittle}
                   deleteTask={this.deleteTask}
