@@ -44,6 +44,15 @@ class ToDo extends React.Component {
   };
 
   endEditing = () => {
+    const isDublicate = this.state.todos.some(
+      (todo) => todo.tittle === this.state.editingText
+    );
+    if (isDublicate) {
+      this.setState({
+        errorMessage: "Error: " + this.state.editingText + " already declared",
+      });
+      return;
+    }
     let newTodos = [];
     this.state.todos.forEach((todo) => {
       if (todo.id === this.state.editingId) {
@@ -55,6 +64,7 @@ class ToDo extends React.Component {
       todos: newTodos,
       editingId: "",
       editingText: "",
+      errorMessage: "",
     });
   };
   swapFunction = (array, swapIndex, index) => {
