@@ -80,6 +80,11 @@ function ToDo() {
   };
 
   const endEditing = () => {
+    const isDublicate = toDos.some((todo) => todo.tittle === editingText);
+    if (isDublicate) {
+      setErrorMessage("Error: " + editingText + " already declared");
+      return;
+    }
     let newTodos = [];
     toDos.forEach((todo) => {
       if (todo.id === editingId) {
@@ -90,6 +95,7 @@ function ToDo() {
     setTodos(newTodos);
     setEditText("");
     setEditId("");
+    setErrorMessage("");
   };
 
   const taskIsDone = (text) => {
