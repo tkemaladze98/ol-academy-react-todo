@@ -1,6 +1,4 @@
-import React from "react";
-import { AiOutlineUp } from "react-icons/ai";
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineUp, AiOutlineDown } from "react-icons/ai";
 import "../styles/taskList.scss";
 
 function TaskList(props) {

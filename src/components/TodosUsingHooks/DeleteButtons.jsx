@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/deleteButtons.scss";
 
 function DeleteButtons(props) {

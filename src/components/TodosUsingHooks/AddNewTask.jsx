@@ -1,11 +1,11 @@
-import React, { useState} from "react";
+import { useState} from "react";
 import "../styles/addNewTask.scss";
 
 function AddNewTask(props) {
-  const [newTask, setNewTaks] = useState("");
+  const [newTask, setNewTask] = useState("");
 
   const clearNewTask = () => {
-    setNewTaks("");
+    setNewTask("");
   };
 
   return (
@@ -18,7 +18,7 @@ function AddNewTask(props) {
             type="text"
             name="task"
             placeholder="Enter here"
-            onChange={(event) => setNewTaks(event.target.value)}
+            onChange={(event) => setNewTask(event.target.value)}
             value={newTask}
           />
         </div>
